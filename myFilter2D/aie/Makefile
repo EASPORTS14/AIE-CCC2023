@@ -18,7 +18,7 @@ GRAPH_CPP := $(SRC_DIR)/graph.cpp
 DEPS := $(GRAPH_CPP)
 DEPS += $(SRC_DIR)/graph.h
 DEPS += $(SRC_DIR)/aie_kernels.h
-DEPS += $(SRC_DIR)/aie_filter2D.cpp
+DEPS += $(SRC_DIR)/aie_kernels/aie_filter2D.cpp
 
 
 AIE_FLAGS = --platform=$(XPFM)
