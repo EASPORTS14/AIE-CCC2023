@@ -4,6 +4,7 @@
 
 #include <adf.h>
 #include "aie_kernels.h"
+#include "config.hpp"
 
 using namespace adf;
 
