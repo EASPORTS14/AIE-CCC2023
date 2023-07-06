@@ -1,41 +1,35 @@
 
-// © Copyright 2021 Xilinx, Inc.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+#ifndef __GRAPH_H__
+#define __GRAPH_H__
 
 #include <adf.h>
 #include "aie_kernels.h"
 
-
 using namespace adf;
 
-class fir_asym_8t_16int_graph : public adf::graph {
-private:
-  kernel fir_asym_8t_vect_k_1;
-public:
-  input_port in;
-  output_port out;
-  
-  fir_asym_8t_16int_graph(){
+class Filter2DGraph : public adf::graph {
+    private:
+        kernel f2d;
 
-    fir_asym_8t_vect_k_1 = kernel::create(fir_asym_8t_16int_vectorized);
-	
-	connect< window<NUM_SAMPLES*2> > net0 (in, fir_asym_8t_vect_k_1.in[0]);
-    connect< window<NUM_SAMPLES*2> > net1 (fir_asym_8t_vect_k_1.out[0], out);
+    public:
+        input_plio in;
+        output_plio out;
 
-    source(fir_asym_8t_vect_k_1) = "aie_kernels/fir_asym_8t_16int_vectorized.cpp";
+        Filter2DGraph() {
+            // create kernel
+            f2d = kernel::create(filter2D);
 
-    runtime<ratio>(fir_asym_8t_vect_k_1) = 0.99;
+            in = input_plio::create("DataIn1", plio_128_bits, "data/input.txt");
+            out = output_plio::create("DataOut1", plio_128_bits, "data/output.txt");
 
-  }
+            //Make AIE connections
+            adf::connect<window<TILE_WINDOW_SIZE> >(in.out[0], f2d.in[0]);
+            adf::connect<window<TILE_WINDOW_SIZE> >(f2d.out[0], out.in[0]);
+
+            source(f2d) = "aie_filter2D.cpp";
+            runtime<ratio>(f2d) = 1;
+    };
 };
+
+#endif //__GRAPH_H__
+
