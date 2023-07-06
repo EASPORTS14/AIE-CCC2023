@@ -4,10 +4,10 @@ TARGET := hw
 
 XPFM = $(shell platforminfo -p $(PLATFORM) --json="file")
 XSA = $(strip $(patsubst %.xpfm, % , $(shell basename $(PLATFORM))))
-VISION_LIB = $(shell readlink -f ../../Vitis_Libraries/vision/)
+VISION_LIB = $(shell readlink -f /aie_kernels/imgproc/vision/L1/include/aie/)
 
 # OUTPUT PRODUCTS 
-BUILD_DIR = build.$(TARGET)
+BUILD_DIR = build.$(XSA).$(TARGET)
 WORK_DIR = work
 SRC_DIR = $(shell readlink -f src/)
 DATA_DIR = $(shell readlink -f data/)
@@ -20,8 +20,9 @@ DEPS += $(SRC_DIR)/graph.h
 DEPS += $(SRC_DIR)/aie_kernels.h
 DEPS += $(SRC_DIR)/aie_filter2D.cpp
 
+
 AIE_FLAGS = --platform=$(XPFM)
-AIE_FLAGS += -include=$(VISION_LIB)/L1/include/aie/
+AIE_FLAGS += -include=$(shell readlink -f /aie_kernels/imgproc/vision/L1/include/aie/)
 
 all: $(BUILD_DIR)/libadf.a
 
