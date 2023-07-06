@@ -20,6 +20,7 @@ DEPS += $(SRC_DIR)/graph.h
 DEPS += $(SRC_DIR)/config.hpp
 DEPS += $(SRC_DIR)/aie_kernels.h
 DEPS += $(SRC_DIR)/aie_kernels/aie_filter2D.cpp
+DEPS += $(SRC_DIR)/aie_kernels/xf_aie_const.hpp
 
 
 AIE_FLAGS = --platform=$(XPFM)
