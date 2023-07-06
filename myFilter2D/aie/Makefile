@@ -16,11 +16,9 @@ CONSTRAINTS_DIR = $(shell readlink -f constraints/)
 # DEPENDENCIES for make aie
 GRAPH_CPP := $(SRC_DIR)/graph.cpp
 DEPS := $(GRAPH_CPP)
-DEPS += $(SRC_DIR)/graph.hpp
-DEPS += $(SRC_DIR)/kernel.hpp
-DEPS += $(SRC_DIR)/config.hpp
-DEPS += $(SRC_DIR)/xf_filter2d.cpp
-
+DEPS += $(SRC_DIR)/graph.h
+DEPS += $(SRC_DIR)/aie_kernels.h
+DEPS += $(SRC_DIR)/aie_filter2D.cpp
 
 AIE_FLAGS = --platform=$(XPFM)
 AIE_FLAGS += -include=$(VISION_LIB)/L1/include/aie/
