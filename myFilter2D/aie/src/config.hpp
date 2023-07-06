@@ -1,11 +1,8 @@
-// Copyright (C) 2023 Advanced Micro Devices, Inc
-//
-// SPDX-License-Identifier: MIT
 
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
 
-#include <common/xf_aie_const.hpp>
+//#include <common/xf_aie_const.hpp>
 
 // tile dimensions are normally computed by tiler but we need to
 // hardcode these values to set the graph window sizes
