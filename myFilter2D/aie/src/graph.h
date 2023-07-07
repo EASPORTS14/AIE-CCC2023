@@ -27,7 +27,7 @@ class Filter2DGraph : public adf::graph {
             adf::connect<window<TILE_WINDOW_SIZE> >(in.out[0], f2d.in[0]);
             adf::connect<window<TILE_WINDOW_SIZE> >(f2d.out[0], out.in[0]);
 
-            source(f2d) = "aie_filter2D.cpp";
+            source(f2d) = "/aie_kernels/aie_filter2D.cpp";
             runtime<ratio>(f2d) = 1;
     };
 };
