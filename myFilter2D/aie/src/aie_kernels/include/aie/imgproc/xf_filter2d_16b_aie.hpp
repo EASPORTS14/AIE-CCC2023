@@ -507,9 +507,9 @@ __attribute__((noinline)) void filter2D_k3_border_impl(v16int16* restrict ptr_im
     }
 }
 
-__attribute__((noinline)) void filter2D_k3_border(adf::input_buffer<int16>& img_in,
+__attribute__((noinline)) void filter2D_k3_border(adf::input_buffer<int16,adf::extents<adf::inherited_extent>, adf::margin<adf::inherited_margin>>& img_in,
                                                   const int16_t (&coeff)[16],
-                                                  adf::output_buffer<int16>& img_out) {
+                                                  adf::output_buffer<int16,adf::extents<adf::inherited_extent>, adf::margin<adf::inherited_margin>>& img_out) {
     int16* restrict img_in_ptr = (int16*)::aie::begin(img_in);
     int16* restrict img_out_ptr = (int16*)::aie::begin(img_out);
 
