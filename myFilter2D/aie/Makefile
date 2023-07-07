@@ -24,7 +24,7 @@ DEPS += $(SRC_DIR)/aie_kernels/xf_aie_const.hpp
 
 
 AIE_FLAGS = --platform=$(XPFM)
-AIE_FLAGS += -include=$(shell readlink -f /aie_kernels/imgproc/vision/L1/include/aie/)
+AIE_FLAGS += -include=$(shell readlink -f /aie_kernels/include/aie/)
 
 all: $(BUILD_DIR)/libadf.a
 

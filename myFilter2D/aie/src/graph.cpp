@@ -1,6 +1,4 @@
 
-#include <adf.h>
-#include "aie_kernels.h"
 #include "graph.h"
 
 using namespace adf;
