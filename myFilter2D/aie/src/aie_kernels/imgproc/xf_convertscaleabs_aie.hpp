@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2019-2022, Xilinx, Inc.
- * Copyright (C) 2022-2023, Advanced Micro Devices, Inc.
+ * Copyright 2021 Xilinx, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -71,12 +70,12 @@ inline void convertscaleabs(const T* restrict img_in,
     clr_sat();
 }
 
-void convertscaleabs_api(adf::input_buffer<int16>& img_in,
-                         adf::output_buffer<int16>& img_out,
+void convertscaleabs_api(input_window_int16* img_in,
+                         output_window_int16* img_out,
                          const float& alpha,
                          const float& beta) {
-    int16_t* img_in_ptr = (int16_t*)::aie::begin(img_in);
-    int16_t* img_out_ptr = (int16_t*)::aie::begin(img_out);
+    int16_t* img_in_ptr = (int16_t*)img_in->ptr;
+    int16_t* img_out_ptr = (int16_t*)img_out->ptr;
 
     const int16_t img_width = xfGetTileWidth(img_in_ptr);
     const int16_t img_height = xfGetTileHeight(img_in_ptr);

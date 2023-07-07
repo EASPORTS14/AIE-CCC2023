@@ -13,6 +13,6 @@ static constexpr int TILE_ELEMENTS = (TILE_WIDTH * TILE_HEIGHT);
 static constexpr int TILE_WINDOW_SIZE = ((TILE_ELEMENTS * sizeof(DATA_TYPE)) + xf::cv::aie::METADATA_SIZE);
 
 /* Graph specific configuration */
-static constexpr int VECTORIZATION_FACTOR = 16;
+//static constexpr int VECTORIZATION_FACTOR = 16;
 
 #endif //__CONFIG_H_

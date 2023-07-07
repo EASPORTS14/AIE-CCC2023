@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2019-2022, Xilinx, Inc.
- * Copyright (C) 2022-2023, Advanced Micro Devices, Inc.
+ * Copyright 2021 Xilinx, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +37,7 @@ __attribute__((noinline)) void multiplication(const T* restrict img_in1,
                                               T* restrict img_out,
                                               const T& img_width,
                                               const T& img_height,
-                                              float& scale) {
+                                              const float& scale) {
     ::aie::vector<T, N> data_buf1;
     ::aie::vector<T, N> data_buf2;
     ::aie::vector<int32_t, N> temp_out;
@@ -75,13 +74,13 @@ __attribute__((noinline)) void multiplication(const T* restrict img_in1,
  * ----------------------------------------------------------------------------
 */
 
-__attribute__((noinline)) void multiplication_api(adf::input_buffer<int16>& img_in,
-                                                  adf::input_buffer<int16>& img_in1,
-                                                  adf::output_buffer<int16>& img_out,
-                                                  float& scale) {
-    int16_t* img_in_ptr = (int16_t*)::aie::begin(img_in);
-    int16_t* img_in_ptr1 = (int16_t*)::aie::begin(img_in1);
-    int16_t* img_out_ptr = (int16_t*)::aie::begin(img_out);
+__attribute__((noinline)) void multiplication_api(input_window_int16* restrict img_in,
+                                                  input_window_int16* restrict img_in1,
+                                                  output_window_int16* restrict img_out,
+                                                  const float& scale) {
+    int16_t* img_in_ptr = (int16_t*)img_in->ptr;
+    int16_t* img_in_ptr1 = (int16_t*)img_in1->ptr;
+    int16_t* img_out_ptr = (int16_t*)img_out->ptr;
 
     const int16_t image_width = xfGetTileWidth(img_in_ptr);
     const int16_t image_height = xfGetTileHeight(img_in_ptr);

@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2019-2022, Xilinx, Inc.
- * Copyright (C) 2022-2023, Advanced Micro Devices, Inc.
+ * Copyright 2021 Xilinx, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,11 +24,6 @@
 namespace xf {
 namespace cv {
 namespace aie {
-
-template <typename T, int FBITS>
-constexpr T ToFixed(float f) {
-    return (T)(f * (1 << FBITS));
-}
 
 // Utility functions which can be used only inside kernel programs
 inline void xfCopyMetaData(void* img_in_ptr, void* img_out_ptr) {

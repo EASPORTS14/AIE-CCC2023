@@ -2,9 +2,12 @@
 PLATFORM := xilinx_vck5000_gen4x8_qdma_2_202220_1
 TARGET := hw
 
+ECHO := @echo
+
 XPFM = $(shell platforminfo -p $(PLATFORM) --json="file")
 XSA = $(strip $(patsubst %.xpfm, % , $(shell basename $(PLATFORM))))
 #VISION_LIB = $(shell readlink -f /aie_kernels/imgproc/vision/L1/include/aie/)
+MAX_CYCLES := 10000
 
 # OUTPUT PRODUCTS 
 BUILD_DIR = build.$(XSA).$(TARGET)

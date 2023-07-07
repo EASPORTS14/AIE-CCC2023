@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2019-2022, Xilinx, Inc.
- * Copyright (C) 2022-2023, Advanced Micro Devices, Inc.
+ * Copyright 2021 Xilinx, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -921,14 +920,14 @@ void DemosaicBaseImpl<INPUT_TILE_ELEMENTS>::xf_demosaic_wrap(int16_t* in_e_ptr,
 }
 
 template <BayerPattern _b, int INPUT_TILE_ELEMENTS>
-__attribute__((noinline)) void DemosaicPlanar<_b, INPUT_TILE_ELEMENTS>::runImpl(adf::input_buffer<int16_t>& in,
-                                                                                adf::output_buffer<int16_t>& outr,
-                                                                                adf::output_buffer<int16_t>& outg,
-                                                                                adf::output_buffer<int16_t>& outb) {
-    int16_t* img_in_ptr = (int16_t*)::aie::begin(in);
-    int16_t* img_out_r_ptr = (int16_t*)::aie::begin(outr);
-    int16_t* img_out_g_ptr = (int16_t*)::aie::begin(outg);
-    int16_t* img_out_b_ptr = (int16_t*)::aie::begin(outb);
+__attribute__((noinline)) void DemosaicPlanar<_b, INPUT_TILE_ELEMENTS>::runImpl(input_window_int16* img_in,
+                                                                                output_window_int16* img_out_r,
+                                                                                output_window_int16* img_out_g,
+                                                                                output_window_int16* img_out_b) {
+    int16_t* img_in_ptr = (int16_t*)img_in->ptr;
+    int16_t* img_out_r_ptr = (int16_t*)img_out_r->ptr;
+    int16_t* img_out_g_ptr = (int16_t*)img_out_g->ptr;
+    int16_t* img_out_b_ptr = (int16_t*)img_out_b->ptr;
 
     const int16_t overlapT = xfGetTileOVLP_VT(img_in_ptr);
     const int16_t overlapB = xfGetTileOVLP_VB(img_in_ptr);
@@ -1023,10 +1022,10 @@ inline void DemosaicRGBA<_b, INPUT_TILE_ELEMENTS>::xfSetRGBAMetaData(void* img_p
 }
 
 template <BayerPattern _b, int INPUT_TILE_ELEMENTS>
-__attribute__((noinline)) void DemosaicRGBA<_b, INPUT_TILE_ELEMENTS>::runImpl(adf::input_buffer<int16_t>& img_in,
-                                                                              adf::output_buffer<int16_t>& img_out) {
-    int16_t* img_in_ptr = (int16_t*)::aie::begin(img_in);
-    int16_t* img_out_ptr = (int16_t*)::aie::begin(img_out);
+__attribute__((noinline)) void DemosaicRGBA<_b, INPUT_TILE_ELEMENTS>::runImpl(input_window_int16* img_in,
+                                                                              output_window_int16* img_out) {
+    int16_t* img_in_ptr = (int16_t*)img_in->ptr;
+    int16_t* img_out_ptr = (int16_t*)img_out->ptr;
 
     const int16_t overlapT = xfGetTileOVLP_VT(img_in_ptr);
     const int16_t overlapB = xfGetTileOVLP_VB(img_in_ptr);

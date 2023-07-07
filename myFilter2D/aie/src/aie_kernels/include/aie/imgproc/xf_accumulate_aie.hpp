@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2019-2022, Xilinx, Inc.
- * Copyright (C) 2022-2023, Advanced Micro Devices, Inc.
+ * Copyright 2021 Xilinx, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,12 +53,12 @@ __attribute__((noinline)) void accumulate(const T* restrict img_in1,
  * 16-bit Accumulate
  * ----------------------------------------------------------------------------
  */
-__attribute__((noinline)) void accumulate_api(adf::input_buffer<int16>& img_in1,
-                                              adf::input_buffer<int16>& img_in2,
-                                              adf::output_buffer<int16>& img_out) {
-    int16* restrict img_in_ptr = (int16*)::aie::begin(img_in1);
-    int16* restrict img_in_ptr1 = (int16*)::aie::begin(img_in2);
-    int16* restrict img_out_ptr = (int16*)::aie::begin(img_out);
+__attribute__((noinline)) void accumulate_api(input_window_int16* img_in1,
+                                              input_window_int16* img_in2,
+                                              output_window_int16* img_out) {
+    int16* restrict img_in_ptr = (int16*)img_in1->ptr;
+    int16* restrict img_in_ptr1 = (int16*)img_in2->ptr;
+    int16* restrict img_out_ptr = (int16*)img_out->ptr;
 
     const int16_t img_width = xfGetTileWidth(img_in_ptr);
     const int16_t img_height = xfGetTileHeight(img_in_ptr);

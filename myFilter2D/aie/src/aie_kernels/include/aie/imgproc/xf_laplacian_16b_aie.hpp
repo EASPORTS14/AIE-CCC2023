@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2019-2022, Xilinx, Inc.
- * Copyright (C) 2022-2023, Advanced Micro Devices, Inc.
+ * Copyright 2021 Xilinx, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,11 +42,11 @@ namespace aie {
  *  |8_|__________3____________|9_|  last row
  *
  */
-__attribute__((noinline)) void laplacian_k3_border(adf::input_buffer<int16>& img_in,
+__attribute__((noinline)) void laplacian_k3_border(input_window_int16* img_in,
                                                    const int16_t (&coeff)[16],
-                                                   adf::output_buffer<int16>& img_out) {
-    int16* restrict img_in_ptr = (int16*)::aie::begin(img_in);
-    int16* restrict img_out_ptr = (int16*)::aie::begin(img_out);
+                                                   output_window_int16* img_out) {
+    int16* restrict img_in_ptr = (int16*)img_in->ptr;
+    int16* restrict img_out_ptr = (int16*)img_out->ptr;
 
     const int16_t image_width = xfGetTileWidth(img_in_ptr);
     const int16_t image_height = xfGetTileHeight(img_in_ptr);

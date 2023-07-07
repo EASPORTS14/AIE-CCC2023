@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2019-2022, Xilinx, Inc.
- * Copyright (C) 2022-2023, Advanced Micro Devices, Inc.
+ * Copyright 2021 Xilinx, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +37,7 @@ class Resize {
         : mPos(pos), mwtsX(wtsx), mwtsY(wtsy) {}
     void runImpl(uint8* input, uint8* output, const uint16* pos, const uint8* weightx, const uint8 weighty);
     void runImpl(uint8* input, uint8* output, int row);
-    void runImpl(adf::input_buffer<uint8_t>& input, adf::output_buffer<uint8_t>& output);
+    void runImpl(input_window<uint8>* input, output_window<uint8>* output);
 };
 
 template <int WIDTH_IN, int HEIGHT_IN, int WIDTH_OUT, int HEIGHT_OUT, int IMG_HEIGHT_OUT>
@@ -86,10 +85,10 @@ void Resize<WIDTH_IN, HEIGHT_IN, WIDTH_OUT, HEIGHT_OUT, IMG_HEIGHT_OUT>::runImpl
 }
 
 template <int WIDTH_IN, int HEIGHT_IN, int WIDTH_OUT, int HEIGHT_OUT, int IMG_HEIGHT_OUT>
-void Resize<WIDTH_IN, HEIGHT_IN, WIDTH_OUT, HEIGHT_OUT, IMG_HEIGHT_OUT>::runImpl(adf::input_buffer<uint8_t>& input,
-                                                                                 adf::output_buffer<uint8_t>& output) {
-    uint8* img_in_ptr = (uint8*)::aie::begin(input);
-    uint8* img_out_ptr = (uint8*)::aie::begin(output);
+void Resize<WIDTH_IN, HEIGHT_IN, WIDTH_OUT, HEIGHT_OUT, IMG_HEIGHT_OUT>::runImpl(input_window<uint8>* input,
+                                                                                 output_window<uint8>* output) {
+    uint8* img_in_ptr = (uint8*)input->ptr;
+    uint8* img_out_ptr = (uint8*)output->ptr;
 
     xfCopyMetaData(img_in_ptr, img_out_ptr);
 

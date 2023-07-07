@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2019-2022, Xilinx, Inc.
- * Copyright (C) 2022-2023, Advanced Micro Devices, Inc.
+ * Copyright 2021 Xilinx, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +15,7 @@
  */
 
 #include <adf.h>
-#include <aie_api/aie.hpp>
-#include <common/xf_aie_hw_utils.hpp> //#include "../include.h"
+//#include "../include.h"
 
 #ifndef _AIE_FILTER2D_H_
 #define _AIE_FILTER2D_H_
@@ -93,9 +91,9 @@ int stride = 128;
  *
  */
 
-void filter2D_api(adf::input_buffer<int32>& img_in, adf::output_buffer<int32>& img_out) {
-    v8int32* restrict ptr_img_buffer = (v8int32*)::aie::begin(img_in);
-    v8int32* restrict ptr_img_out = (v8int32*)::aie::begin(img_out);
+void filter2D_api(input_window_int32* img_in, output_window_int32* img_out) {
+    v8int32* restrict ptr_img_buffer = (v8int32*)img_in->ptr;
+    v8int32* restrict ptr_img_out = (v8int32*)img_out->ptr;
 
     v32int32 data_buf;
     v16int32 data_buf1;

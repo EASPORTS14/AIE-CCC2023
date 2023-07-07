@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2019-2022, Xilinx, Inc.
- * Copyright (C) 2022-2023, Advanced Micro Devices, Inc.
+ * Copyright 2021 Xilinx, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -139,10 +138,10 @@ class DemosaicPlanar : public DemosaicBaseImpl<INPUT_TILE_ELEMENTS> {
 
     DemosaicPlanar(int16_t (&iEven)[INTERLEAVE_TILE_ELEMENTS], int16_t (&iOdd)[INTERLEAVE_TILE_ELEMENTS])
         : mInEven(iEven), mInOdd(iOdd) {}
-    void runImpl(adf::input_buffer<int16_t>& in,
-                 adf::output_buffer<int16_t>& outr,
-                 adf::output_buffer<int16_t>& outg,
-                 adf::output_buffer<int16_t>& outb);
+    void runImpl(input_window_int16* img_in,
+                 output_window_int16* img_out_r,
+                 output_window_int16* img_out_g,
+                 output_window_int16* img_out_b);
 };
 
 template <BayerPattern b, int INPUT_TILE_ELEMENTS>
@@ -182,7 +181,7 @@ class DemosaicRGBA : public DemosaicBaseImpl<INPUT_TILE_ELEMENTS> {
           mGChannel(gch),
           mBChannel(bch) {}
 
-    void runImpl(adf::input_buffer<int16_t>& img_in, adf::output_buffer<int16_t>& img_out);
+    void runImpl(input_window_int16* img_in, output_window_int16* img_out);
 };
 
 } // aie
