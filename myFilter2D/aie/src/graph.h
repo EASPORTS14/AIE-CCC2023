@@ -11,7 +11,6 @@ using namespace adf;
 class Filter2DGraph : public adf::graph {
     private:
         kernel f2d;
-
     public:
         // input_plio in;
         // output_plio out;
@@ -31,8 +30,8 @@ class Filter2DGraph : public adf::graph {
             connect< window<TILE_WINDOW_SIZE> > net0 (in, f2d.in[0]);
             connect< window<TILE_WINDOW_SIZE> > net1 (f2d.out[0], out);
 
-            source(f2d) = "/aie_kernels/aie_filter2D.cpp";
-            runtime<ratio>(f2d) = 1;
+            source(f2d) = "aie_kernels/aie_filter2D.cpp";
+            runtime<ratio>(f2d) = 0.99;
     };
 };
 
