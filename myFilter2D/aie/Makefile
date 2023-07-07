@@ -4,7 +4,7 @@ TARGET := hw
 
 XPFM = $(shell platforminfo -p $(PLATFORM) --json="file")
 XSA = $(strip $(patsubst %.xpfm, % , $(shell basename $(PLATFORM))))
-VISION_LIB = $(shell readlink -f /aie_kernels/imgproc/vision/L1/include/aie/)
+#VISION_LIB = $(shell readlink -f /aie_kernels/imgproc/vision/L1/include/aie/)
 
 # OUTPUT PRODUCTS 
 BUILD_DIR = build.$(XSA).$(TARGET)
@@ -20,11 +20,12 @@ DEPS += $(SRC_DIR)/graph.h
 DEPS += $(SRC_DIR)/config.hpp
 DEPS += $(SRC_DIR)/aie_kernels.h
 DEPS += $(SRC_DIR)/aie_kernels/aie_filter2D.cpp
-DEPS += $(SRC_DIR)/aie_kernels/xf_aie_const.hpp
+#DEPS += $(SRC_DIR)/aie_kernels/xf_aie_const.hpp
 
 
 AIE_FLAGS = --platform=$(XPFM)
-AIE_FLAGS += -include=$(shell readlink -f /aie_kernels/include/aie/)
+#AIE_FLAGS += -include=$(shell readlink -f /aie_kernels/include/aie/)
+AIE_FLAGS += -include=$(SRC_DIR)/aie_kernels/include/aie/
 
 all: $(BUILD_DIR)/libadf.a
 
