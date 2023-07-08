@@ -4,7 +4,7 @@
 
 #include <adf.h>
 #include "aie_kernels.h"
-#include "config.hpp"
+//#include "config.hpp"
 
 using namespace adf;
 
@@ -27,8 +27,8 @@ class Filter2DGraph : public adf::graph {
             //Make AIE connections
             // adf::connect<window<TILE_WINDOW_SIZE> >(in.out[0], f2d.in[0]);
             // adf::connect<window<TILE_WINDOW_SIZE> >(f2d.out[0], out.in[0]);
-            connect< window<TILE_WINDOW_SIZE> > net0 (in, f2d.in[0]);
-            connect< window<TILE_WINDOW_SIZE> > net1 (f2d.out[0], out);
+            connect< window<16384> > net0 (in, f2d.in[0]);
+            connect< window<16384> > net1 (f2d.out[0], out);
 
             source(f2d) = "aie_kernels/aie_filter2D.cpp";
             runtime<ratio>(f2d) = 0.99;

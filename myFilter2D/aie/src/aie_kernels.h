@@ -7,8 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define PARALLEL_FACTOR_32b 8 // Parallelization factor for 32b operations (8x mults)
-#define SRS_SHIFT 10          // SRS shift used can be increased if input data likewise adjusted)
+// #define PARALLEL_FACTOR_32b 8 // Parallelization factor for 32b operations (8x mults)
+// #define SRS_SHIFT 10          // SRS shift used can be increased if input data likewise adjusted)
 #define IMAGE_SIZE 4096       // 256x16
 #define MAX_KERNEL_SIZE 128
 
