@@ -16,6 +16,8 @@
 
 #include <adf.h>
 //#include "../include.h"
+#define PARALLEL_FACTOR_32b 8 // Parallelization factor for 32b operations (8x mults)
+#define SRS_SHIFT 10          // SRS shift used can be increased if input data likewise adjusted)
 
 #ifndef _AIE_FILTER2D_H_
 #define _AIE_FILTER2D_H_
@@ -25,9 +27,9 @@ namespace cv {
 namespace aie {
 
 int32_t kernel_coeff[16] = {64, 128, 64, 128, 256, 128, 64, 128, 64};
-int image_width = 128;
-int image_height = 32;
-int stride = 128;
+int image_width = 64;
+int image_height = 64;
+int stride = 64;
 
 /**
  * ----------------------------------------------------------------------------
