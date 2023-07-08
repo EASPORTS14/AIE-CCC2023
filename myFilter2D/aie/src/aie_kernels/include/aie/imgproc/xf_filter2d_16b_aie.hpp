@@ -21,7 +21,7 @@
 #define PARALLEL_FACTOR_16b 16 // Parallelization factor for 16b operations (16x mults)
 #define SRS_SHIFT 10           // SRS shift used can be increased if input data likewise adjusted)
 
-const int16_t (&coeff)[16] = {64, 128, 64, 128, 256, 128, 64, 128, 64};
+//const int16_t (&coeff)[16] = {64, 128, 64, 128, 256, 128, 64, 128, 64};
 
 namespace xf {
 namespace cv {
@@ -45,6 +45,7 @@ namespace aie {
  *
  */
 __attribute__((noinline)) void filter2D_k3_border(input_window_int16* img_in,
+                                                const int16_t (&coeff)[16],
                                                   output_window_int16* img_out) {
     int16* restrict img_in_ptr = (int16*)img_in->ptr;
     int16* restrict img_out_ptr = (int16*)img_out->ptr;

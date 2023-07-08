@@ -8,6 +8,6 @@ kData[9] = {0.0625, 0.125, 0.0625, 0.125, 0.25, 0.125, 0.0625, 0.125, 0.0625};
 */
 
 void filter2D(input_window_int16* input, output_window_int16* output) {
-    //const int16_t coeff[16] = {64, 128, 0, 64, 0, 128, 256, 0, 128, 0, 64, 128, 0, 64, 0, 0};
-    xf::cv::aie::filter2D_k3_border(input, output);
+    const int16_t coeff[16] = {64, 128, 0, 64, 0, 128, 256, 0, 128, 0, 64, 128, 0, 64, 0, 0};
+    xf::cv::aie::filter2D_k3_border(input, coeff, output);
 };
