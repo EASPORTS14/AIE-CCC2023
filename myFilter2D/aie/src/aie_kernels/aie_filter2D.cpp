@@ -1,5 +1,5 @@
 
-#include "imgproc/xf_filter2d_aie.hpp"
+#include "imgproc/xf_filter2d_16b_aie.hpp"
 #include "aie_kernels.h"
 
 /*
