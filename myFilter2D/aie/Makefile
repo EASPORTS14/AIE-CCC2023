@@ -53,4 +53,4 @@ aieemu:
 
 x86sim:
 	cd $(BUILD_DIR); \
-	x86simulator --pkg-dir=$(WORK_DIR) --i=..
+	x86simulator --simulation-cycle-timeout 20000 --pkg-dir=$(WORK_DIR) --i=..
