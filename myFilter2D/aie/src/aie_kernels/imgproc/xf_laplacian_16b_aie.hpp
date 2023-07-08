@@ -15,11 +15,11 @@
  */
 
 #include <adf.h>
-#include <algorithm>
 #include <common/xf_aie_hw_utils.hpp>
+#include <algorithm>
 
 #define PARALLEL_FACTOR_16b 16 // Parallelization factor for 16b operations (16x mults)
-#define SRS_SHIFT 10           // SRS shift used can be increased if input data likewise adjusted)
+#define SRS_SHIFT 0            // SRS shift used can be increased if input data likewise adjusted)
 
 namespace xf {
 namespace cv {
@@ -42,9 +42,9 @@ namespace aie {
  *  |8_|__________3____________|9_|  last row
  *
  */
-__attribute__((noinline)) void filter2D_k3_border(input_window_int16* img_in,
-                                                  const int16_t (&coeff)[16],
-                                                  output_window_int16* img_out) {
+__attribute__((noinline)) void laplacian_k3_border(input_window_int16* img_in,
+                                                   const int16_t (&coeff)[16],
+                                                   output_window_int16* img_out) {
     int16* restrict img_in_ptr = (int16*)img_in->ptr;
     int16* restrict img_out_ptr = (int16*)img_out->ptr;
 
@@ -53,6 +53,7 @@ __attribute__((noinline)) void filter2D_k3_border(input_window_int16* img_in,
     const int16_t stride = image_width;
 
     xfCopyMetaData(img_in_ptr, img_out_ptr);
+    xfUnsignedSaturation(img_out_ptr);
 
     v16int16* restrict ptr_img_buffer = (v16int16*)xfGetImgDataPtr(img_in_ptr);
     v16int16* restrict ptr_img_out = (v16int16*)xfGetImgDataPtr(img_out_ptr);
@@ -80,8 +81,7 @@ __attribute__((noinline)) void filter2D_k3_border(input_window_int16* img_in,
     // k6 k7 0 k8 0
 
     // **************************************************************************
-    // Unrolling loops over rows and columns to support the different image
-    // regions
+    // Unrolling loops over rows and columns to support the different image regions
     // **************************************************************************
 
     // **************************************************************************
