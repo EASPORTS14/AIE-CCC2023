@@ -1,12 +1,13 @@
 
 #include "graph.h"
 
+#define SRS_SHIFT 10
+
 using namespace adf;
 
 // Graph object
 // PLIO* in1 = new PLIO("DataIn1", adf::plio_32_bits, "data/input.txt");
 // PLIO* out1 = new PLIO("DataOut1", adf::plio_32_bits, "data/output.txt");
-
 
 Filter2DGraph filter_graph;
 simulation::platform<1, 1> platform(in1, out1);
