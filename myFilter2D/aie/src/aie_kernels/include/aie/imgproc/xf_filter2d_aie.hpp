@@ -26,8 +26,8 @@ namespace xf {
 namespace cv {
 namespace aie {
 
- //int32_t kernel_coeff[16] = {64, 128, 64, 128, 256, 128, 64, 128, 64};
-int32_t kernel_coeff[16] = {1, 2, 1, 2, 4, 2, 1, 2, 1};
+  int32_t kernel_coeff[16] = {64, 128, 64, 128, 256, 128, 64, 128, 64};
+//int32_t kernel_coeff[16] = {1, 2, 1, 2, 4, 2, 1, 2, 1};
 int image_width = 64;
 int image_height = 64;
 int stride = 64;
@@ -94,7 +94,7 @@ int stride = 64;
  *
  */
 
-void filter2D_api(input_window_int32* img_in, output_window_int32* img_out) {
+void filter2D_api(input_window_int32* img_in, output_window_int32* img_out ,output_window_int32* img_out2) {
     v8int32* restrict ptr_img_buffer = (v8int32*)img_in->ptr;
     v8int32* restrict ptr_img_out = (v8int32*)img_out->ptr;
 

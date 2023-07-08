@@ -12,8 +12,8 @@ class Filter2DGraph : public adf::graph {
     private:
         kernel f2d;
     public:
-        // input_plio in;
-        // output_plio out;
+        input_plio in;
+        output_plio out;
         port<input> in;
         port<output> out;
 
@@ -21,8 +21,8 @@ class Filter2DGraph : public adf::graph {
             // create kernel
             f2d = kernel::create(filter2D);
 
-            // in = input_plio::create("DataIn1", plio_128_bits, "data/input.txt");
-            // out = output_plio::create("DataOut1", plio_128_bits, "data/output.txt");
+            in = input_plio::create("DataIn1", plio_256_bits, "data/input.txt");
+            out = output_plio::create("DataOut1", plio_256_bits, "data/output.txt");
 
             //Make AIE connections
             // adf::connect<window<TILE_WINDOW_SIZE> >(in.out[0], f2d.in[0]);

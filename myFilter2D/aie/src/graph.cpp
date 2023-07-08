@@ -4,8 +4,8 @@
 using namespace adf;
 
 // Graph object
-PLIO* in1 = new PLIO("DataIn1", adf::plio_32_bits, "data/input.txt");
-PLIO* out1 = new PLIO("DataOut1", adf::plio_32_bits, "data/output.txt");
+// PLIO* in1 = new PLIO("DataIn1", adf::plio_32_bits, "data/input.txt");
+// PLIO* out1 = new PLIO("DataOut1", adf::plio_32_bits, "data/output.txt");
 
 
 Filter2DGraph filter_graph;
