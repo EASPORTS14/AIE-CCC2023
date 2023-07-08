@@ -27,9 +27,9 @@ namespace cv {
 namespace aie {
 
 int32_t kernel_coeff[16] = {64, 128, 64, 128, 256, 128, 64, 128, 64};
-int image_width = 128;
-int image_height = 32;
-int stride = 128;
+int image_width = 64;
+int image_height = 64;
+int stride = 64;
 
 /**
  * ----------------------------------------------------------------------------
