@@ -14,8 +14,8 @@ class Filter2DGraph : public adf::graph {
     public:
         // input_plio in;
         // output_plio out;
-        input_port in;
-        output_port out;
+        port<input> in;
+        port<output> out;
 
         Filter2DGraph() {
             // create kernel
