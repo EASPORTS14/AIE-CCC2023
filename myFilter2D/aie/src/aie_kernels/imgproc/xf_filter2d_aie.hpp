@@ -16,6 +16,8 @@
 
 #include <adf.h>
 //#include "../include.h"
+#define PARALLEL_FACTOR_32b 8 // Parallelization factor for 32b operations (8x mults)
+#define SRS_SHIFT 10          // SRS shift used can be increased if input data likewise adjusted)
 
 #ifndef _AIE_FILTER2D_H_
 #define _AIE_FILTER2D_H_

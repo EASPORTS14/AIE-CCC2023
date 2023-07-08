@@ -12,6 +12,7 @@
 #define IMAGE_SIZE 4096       // 256x16
 #define MAX_KERNEL_SIZE 128
 
+
 const int kernel_width = 3;
 const int kernel_height = 3;
 
