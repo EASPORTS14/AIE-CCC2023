@@ -94,7 +94,7 @@ int stride = 64;
  *
  */
 
-void filter2D_api(input_window_int32* img_in, output_window_int32* img_out ,output_window_int32* img_out2) {
+void filter2D_api(input_window_int32* img_in, output_window_int32* img_out) {
     v8int32* restrict ptr_img_buffer = (v8int32*)img_in->ptr;
     v8int32* restrict ptr_img_out = (v8int32*)img_out->ptr;
 
