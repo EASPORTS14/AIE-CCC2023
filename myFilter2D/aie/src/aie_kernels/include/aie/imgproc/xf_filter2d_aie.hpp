@@ -26,7 +26,8 @@ namespace xf {
 namespace cv {
 namespace aie {
 
-int32_t kernel_coeff[16] = {64, 128, 64, 128, 256, 128, 64, 128, 64};
+// int32_t kernel_coeff[16] = {64, 128, 64, 128, 256, 128, 64, 128, 64};
+int32_t kernel_coeff[16] = {1, 2, 1, 2, 4, 2, 1, 2, 1};
 int image_width = 64;
 int image_height = 64;
 int stride = 64;
