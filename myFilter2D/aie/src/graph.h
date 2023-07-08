@@ -9,9 +9,8 @@
 using namespace adf;
 
 class Filter2DGraph : public adf::graph {
-    private:
-        kernel f2d;
     public:
+        kernel f2d;
         input_plio in;
         output_plio out;
         // input_port in;
