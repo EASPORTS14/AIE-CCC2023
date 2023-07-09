@@ -48,8 +48,10 @@ __attribute__((noinline)) void filter2D_k3_border(input_window_int16* img_in,
     int16* restrict img_in_ptr = (int16*)img_in->ptr;
     int16* restrict img_out_ptr = (int16*)img_out->ptr;
 
-    const int16_t image_width = xfGetTileWidth(img_in_ptr);
-    const int16_t image_height = xfGetTileHeight(img_in_ptr);
+    // const int16_t image_width = xfGetTileWidth(img_in_ptr);
+    // const int16_t image_height = xfGetTileHeight(img_in_ptr);
+    const int16_t image_width = 64;
+    const int16_t image_height = 64;
     const int16_t stride = image_width;
 
     xfCopyMetaData(img_in_ptr, img_out_ptr);
